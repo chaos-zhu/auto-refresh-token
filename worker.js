@@ -49,7 +49,7 @@ async function getAccessToken(refreshToken, keyList, isForce = false) {
   if (detail?.includes('invalid_grant')) {
     throw Error('invalid refresh token.');
   }
-  let newExpiresIn = Date.now() + expires_in * 1000;
+  let newExpiresIn = Date.now() + expires_in * 1000 - 259200000; // Expires in seven days
   target.at = access_token
   target.expiresIn = newExpiresIn
   return access_token;
